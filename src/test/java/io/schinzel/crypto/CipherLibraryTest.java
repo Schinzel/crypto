@@ -3,7 +3,6 @@ package io.schinzel.crypto;
 import io.schinzel.basicutils.FunnyChars;
 import io.schinzel.basicutils.RandomUtil;
 import io.schinzel.basicutils.UTF8;
-import io.schinzel.crypto.CipherLibrary;
 import io.schinzel.crypto.cipher.ICipher;
 import io.schinzel.crypto.cipher.NoCipher;
 import org.junit.Test;
@@ -21,14 +20,14 @@ public class CipherLibraryTest {
 
     @Test
     public void getSingleton_CallingMethodTwice_ShouldBeSameInstance() {
-        io.schinzel.crypto.CipherLibrary singleton = io.schinzel.crypto.CipherLibrary.getSingleton();
-        assertThat(singleton).isEqualTo(io.schinzel.crypto.CipherLibrary.getSingleton());
+        CipherLibrary singleton = CipherLibrary.getSingleton();
+        assertThat(singleton).isEqualTo(CipherLibrary.getSingleton());
     }
 
 
     @Test
     public void encryptDecrypt_FunnyChars_OutputSameAsInput() {
-        io.schinzel.crypto.CipherLibrary cipherLibrary = io.schinzel.crypto.CipherLibrary.create()
+        CipherLibrary cipherLibrary = CipherLibrary.create()
                 .addCipher(1, new NoCipher());
         for (FunnyChars funnyChars : FunnyChars.values()) {
             String encryptedString = cipherLibrary.encrypt(1, funnyChars.getString());
@@ -44,7 +43,7 @@ public class CipherLibraryTest {
         when(mockCipher1.encrypt(any(byte[].class))).then(i -> "one_" + UTF8.getString(i.getArgument(0)));
         ICipher mockCipher2 = mock(ICipher.class);
         when(mockCipher2.encrypt(any(byte[].class))).then(i -> "two_" + UTF8.getString(i.getArgument(0)));
-        io.schinzel.crypto.CipherLibrary cipherLibrary = io.schinzel.crypto.CipherLibrary.create()
+        CipherLibrary cipherLibrary = CipherLibrary.create()
                 .addCipher(1, mockCipher1)
                 .addCipher(2, mockCipher2);
         String encryptedString = cipherLibrary.encrypt(1, "my_first_string");
@@ -60,7 +59,7 @@ public class CipherLibraryTest {
         when(mockCipher1.decrypt(anyString())).then(i -> i.getArgument(0).toString().substring(7));
         ICipher mockCipher2 = mock(ICipher.class);
         when(mockCipher2.decrypt(anyString())).then(i -> i.getArgument(0).toString().substring(5));
-        io.schinzel.crypto.CipherLibrary cipherLibrary = io.schinzel.crypto.CipherLibrary.create()
+        CipherLibrary cipherLibrary = CipherLibrary.create()
                 .addCipher(1, mockCipher1)
                 .addCipher(2, mockCipher2);
         String decryptedString = cipherLibrary.decrypt("v1_prefix_my_first_string");
@@ -72,7 +71,7 @@ public class CipherLibraryTest {
 
     @Test
     public void addCipher_CipherVersionAlreadyExists_ThrowsException() {
-        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> io.schinzel.crypto.CipherLibrary.create()
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> CipherLibrary.create()
                 .addCipher(1, mock(ICipher.class))
                 .addCipher(1, mock(ICipher.class)));
     }
@@ -80,7 +79,7 @@ public class CipherLibraryTest {
 
     @Test
     public void encrypt_NoCypherWithArgumentVersion_ThrowsException() {
-        io.schinzel.crypto.CipherLibrary cipherLibrary = io.schinzel.crypto.CipherLibrary.create().addCipher(1, mock(ICipher.class));
+        CipherLibrary cipherLibrary = CipherLibrary.create().addCipher(1, mock(ICipher.class));
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
                 cipherLibrary.encrypt(123, "my_string"));
     }
@@ -88,7 +87,7 @@ public class CipherLibraryTest {
 
     @Test
     public void decrypt_NoPrefix_ThrowsException() {
-        io.schinzel.crypto.CipherLibrary cipherLibrary = io.schinzel.crypto.CipherLibrary.create().addCipher(1, mock(ICipher.class));
+        CipherLibrary cipherLibrary = CipherLibrary.create().addCipher(1, mock(ICipher.class));
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
                 cipherLibrary.decrypt("my_string"));
     }
@@ -96,7 +95,7 @@ public class CipherLibraryTest {
 
     @Test
     public void decrypt_NoSuchCipherVersion_ThrowsException() {
-        io.schinzel.crypto.CipherLibrary cipherLibrary = io.schinzel.crypto.CipherLibrary.create()
+        CipherLibrary cipherLibrary = CipherLibrary.create()
                 .addCipher(1, mock(ICipher.class));
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
                 cipherLibrary.decrypt("v123_my_string"));
@@ -106,7 +105,7 @@ public class CipherLibraryTest {
     @Test
     public void decryptAsByteArray_RandomString_SameAsArgumentString() {
         String clearText = RandomUtil.getRandomString(10);
-        io.schinzel.crypto.CipherLibrary cipherLibrary = CipherLibrary.create()
+        CipherLibrary cipherLibrary = CipherLibrary.create()
                 .addCipher(1, new NoCipher());
         String encryptedStringWithVersionPrefix = cipherLibrary.encrypt(1, clearText);
         byte[] decryptedBytes = cipherLibrary.decryptToByteArray(encryptedStringWithVersionPrefix);

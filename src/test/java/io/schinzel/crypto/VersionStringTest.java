@@ -2,7 +2,6 @@ package io.schinzel.crypto;
 
 import io.schinzel.basicutils.FunnyChars;
 import io.schinzel.basicutils.RandomUtil;
-import io.schinzel.crypto.VersionString;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,19 +12,19 @@ public class VersionStringTest {
         for (FunnyChars funnyChars : FunnyChars.values()) {
             String string = funnyChars.getString();
             int version = RandomUtil.getRandomNumber(1, Integer.MAX_VALUE);
-            String s = io.schinzel.crypto.VersionString.addVersionPrefix(version, string);
-            Assert.assertEquals(version, (long) io.schinzel.crypto.VersionString.extractVersion(s));
+            String s = VersionString.addVersionPrefix(version, string);
+            Assert.assertEquals(version, (long) VersionString.extractVersion(s));
 
         }
     }
 
 
     @Test
-    public void extractString_StringSetWithAddVersionPrefix_OutputShoudlBeSameAsInput() {
+    public void extractString_StringSetWithAddVersionPrefix_OutputShouldBeSameAsInput() {
         for (FunnyChars funnyChars : FunnyChars.values()) {
             String input = funnyChars.getString();
             int version = RandomUtil.getRandomNumber(1, Integer.MAX_VALUE);
-            String s = io.schinzel.crypto.VersionString.addVersionPrefix(version, input);
+            String s = VersionString.addVersionPrefix(version, input);
             Assert.assertEquals(input, VersionString.extractString(s));
         }
     }

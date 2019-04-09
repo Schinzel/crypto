@@ -19,7 +19,7 @@ public class HashLibraryTest {
 
     @Test
     public void addHash_AddSameVersionNumberTwice_ThrowsException() {
-        io.schinzel.crypto.HashLibrary hashLibrary = HashLibrary.create()
+        HashLibrary hashLibrary = HashLibrary.create()
                 .addHash(1, mock(IHash.class));
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
                 hashLibrary.addHash(1, mock(IHash.class)))

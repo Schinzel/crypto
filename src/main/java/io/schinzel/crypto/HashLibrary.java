@@ -49,7 +49,7 @@ public class HashLibrary {
      * @param hash    The hash to add
      * @return This for chaining
      */
-    public HashLibrary addHash(Integer version, io.schinzel.crypto.hash.IHash hash) {
+    public HashLibrary addHash(Integer version, IHash hash) {
         if (this.getHashes().containsKey(version)) {
             throw new RuntimeException("Cannot add hash to HashLibrary. This as there already exists a hash with version " + version);
         }
@@ -69,7 +69,7 @@ public class HashLibrary {
         Thrower.throwIfFalse(this.getHashes().containsKey(version))
                 .message("Cannot hashes as there is no hashes with version " + version);
         IHash hash = this.getHashes().get(version);
-        return io.schinzel.crypto.VersionString.addVersionPrefix(version, hash.hash(clearText));
+        return VersionString.addVersionPrefix(version, hash.hash(clearText));
     }
 
 
@@ -81,7 +81,7 @@ public class HashLibrary {
      * the argument hashed string was created.
      */
     public boolean matches(String clearText, String hashedStringWithVersion) {
-        Integer version = io.schinzel.crypto.VersionString.extractVersion(hashedStringWithVersion);
+        Integer version = VersionString.extractVersion(hashedStringWithVersion);
         Thrower.throwIfFalse(this.getHashes().containsKey(version))
                 .message("Cannot hashes as there is no hashes with version " + version);
         String hashedString = VersionString.extractString(hashedStringWithVersion);
