@@ -3,7 +3,21 @@ The purpose of this library is to offer protection of data from prying eyes thro
 
 [![Build Status](https://travis-ci.org/Schinzel/crypto.svg?branch=master)](https://travis-ci.org/Schinzel/crypto)
 
+#### Sample code
+```java
+Aes256Gcm("0123456789abcdef0123456789abcdef");
+String encryptedString = aes.encrypt("This is a string");
 
+IHash hash = new Bcrypt();
+String hashedText = hash.hash(clearText);
+
+CipherLibrary cipherLibrary = CipherLibrary.create()
+        .addCipher(1, new Aes256Gcm("G2Ed3Zs6qDAft8Az7268BE9bWbAzXm2q"))
+        .addCipher(2, new Aes256Gcm("uhgZxYLKn92w2B2ZFUtT2y98Z9K89MmX"))
+        .addCipher(3, new Aes256Gcm("et4CgMZd99zPodK7QnLDGMV643GE94Q8"));
+String encryptedString = cipherLibrary.encrypt(1, "This is a string");
+String decryptedString = cipherLibrary.decrypt(encryptedString);
+```
 
 #### How to add repo
 ```xml
