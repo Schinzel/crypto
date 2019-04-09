@@ -59,7 +59,7 @@ public class CipherLibrary {
      * @param cipher  The cipher to add
      * @return This for chaining
      */
-    public CipherLibrary addCipher(Integer version, io.schinzel.crypto.cipher.ICipher cipher) {
+    public CipherLibrary addCipher(Integer version, ICipher cipher) {
         if (this.getCiphers().containsKey(version)) {
             throw new RuntimeException("Cannot add cipher to CipherLibrary. This as there already exists a cipher with version " + version);
         }

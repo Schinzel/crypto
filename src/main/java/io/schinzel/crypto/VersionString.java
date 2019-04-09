@@ -73,7 +73,7 @@ public class VersionString {
 
     /**
      * Throw exception if argument string is not a correctly formatted version string
-     * @param stringWithVersionPrefix
+     * @param stringWithVersionPrefix The string to validate
      */
     static void validateString(String stringWithVersionPrefix) {
         Thrower.throwIfFalse(STRING_PATTERN.matcher(stringWithVersionPrefix).matches())
