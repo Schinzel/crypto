@@ -2,7 +2,6 @@ package io.schinzel.crypto;
 
 import io.schinzel.basicutils.FunnyChars;
 import io.schinzel.basicutils.RandomUtil;
-import io.schinzel.crypto.HashLibrary;
 import io.schinzel.crypto.hash.IHash;
 import org.junit.Test;
 
@@ -20,11 +19,11 @@ public class HashLibraryTest {
 
     @Test
     public void addHash_AddSameVersionNumberTwice_ThrowsException() {
-        io.schinzel.crypto.HashLibrary hashLibrary = io.schinzel.crypto.HashLibrary.create()
+        io.schinzel.crypto.HashLibrary hashLibrary = HashLibrary.create()
                 .addHash(1, mock(IHash.class));
-        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
-            hashLibrary.addHash(1, mock(IHash.class));
-        }).withMessageContaining("Cannot add hash to HashLibrary");
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
+                hashLibrary.addHash(1, mock(IHash.class)))
+                .withMessageContaining("Cannot add hash to HashLibrary");
     }
 
 
@@ -32,12 +31,12 @@ public class HashLibraryTest {
     public void getSingleton_AddHash_TheAddedHashShouldBeAvailable() {
         IHash mock = mock(IHash.class);
         when(mock.hash("my_string")).thenReturn("hashed_string");
-        io.schinzel.crypto.HashLibrary.getSingleton().addHash(1, mock);
-        String actual = io.schinzel.crypto.HashLibrary.getSingleton().hash(1, "my_string");
+        HashLibrary.getSingleton().addHash(1, mock);
+        String actual = HashLibrary.getSingleton().hash(1, "my_string");
         String expected = "v1_hashed_string";
         assertThat(actual).isEqualTo(expected);
         //Reset singleton
-        io.schinzel.crypto.HashLibrary.SINGLETON_INSTANCE = new io.schinzel.crypto.HashLibrary();
+        HashLibrary.SINGLETON_INSTANCE = new HashLibrary();
     }
 
 
@@ -47,7 +46,7 @@ public class HashLibraryTest {
         when(mockHash1.hash(anyString())).then(i -> "mock1_" + i.getArgument(0));
         IHash mockHash2 = mock(IHash.class);
         when(mockHash2.hash(anyString())).then(i -> "mock2_" + i.getArgument(0));
-        io.schinzel.crypto.HashLibrary library = io.schinzel.crypto.HashLibrary.create()
+        HashLibrary library = HashLibrary.create()
                 .addHash(45, mockHash1)
                 .addHash(77, mockHash2);
         assertEquals("v45_mock1_mystring", library.hash(45, "mystring"));
@@ -62,7 +61,7 @@ public class HashLibraryTest {
         for (FunnyChars funnyChars : FunnyChars.values()) {
             String clearText = funnyChars.getString();
             int version = RandomUtil.getRandomNumber(1, Integer.MAX_VALUE);
-            io.schinzel.crypto.HashLibrary library = io.schinzel.crypto.HashLibrary.create()
+            HashLibrary library = HashLibrary.create()
                     .addHash(version, mockHash);
             String actual = library.hash(version, clearText);
             String expected = "v" + version + "_mock_" + clearText;
@@ -73,20 +72,18 @@ public class HashLibraryTest {
 
     @Test
     public void hash_NoHashesAdded_Exception() {
-        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
-            io.schinzel.crypto.HashLibrary.create().hash(123, "");
-        });
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
+                HashLibrary.create().hash(123, ""));
     }
 
 
     @Test
     public void hash_RequestHashVersionThatDoesNotExist_Exception() {
-        io.schinzel.crypto.HashLibrary library = io.schinzel.crypto.HashLibrary.create()
+        HashLibrary library = HashLibrary.create()
                 .addHash(1, mock(IHash.class))
                 .addHash(2, mock(IHash.class));
-        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
-            library.hash(123, "");
-        });
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
+                library.hash(123, ""));
     }
 
 
@@ -94,7 +91,7 @@ public class HashLibraryTest {
     public void matches_DoNotMatch_False() {
         IHash mockHash = mock(IHash.class);
         when(mockHash.matches(anyString(), anyString())).thenReturn(false);
-        io.schinzel.crypto.HashLibrary library = io.schinzel.crypto.HashLibrary.create().addHash(11, mockHash);
+        HashLibrary library = HashLibrary.create().addHash(11, mockHash);
         String clearText = "first_string";
         String hashedString = library.hash(11, "second_string");
         assertFalse("Should not match as are two different strings",
@@ -106,7 +103,7 @@ public class HashLibraryTest {
     public void matches_Matches_True() {
         IHash mockHash = mock(IHash.class);
         when(mockHash.matches(anyString(), anyString())).thenReturn(true);
-        io.schinzel.crypto.HashLibrary library = io.schinzel.crypto.HashLibrary.create().addHash(11, mockHash);
+        HashLibrary library = HashLibrary.create().addHash(11, mockHash);
         String clearText = "the_string";
         String hashedString = library.hash(11, "the_string");
         assertTrue("Should match as are the same string",
@@ -116,9 +113,8 @@ public class HashLibraryTest {
 
     @Test
     public void matches_NonExistingVersionInVersionPrefix_Exception() {
-        io.schinzel.crypto.HashLibrary library = HashLibrary.create().addHash(11, mock(IHash.class));
-        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> {
-            library.matches("clear_text", "v23_this_prefix_does_not_exist");
-        });
+        HashLibrary library = HashLibrary.create().addHash(11, mock(IHash.class));
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
+                library.matches("clear_text", "v23_this_prefix_does_not_exist"));
     }
 }

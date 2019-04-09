@@ -9,7 +9,6 @@ import org.mindrot.jbcrypt.BCrypt;
  * <p>
  * Created by schinzel on 2017-06-01.
  */
-@SuppressWarnings("WeakerAccess")
 public class Bcrypt implements IHash {
     final int mIterations;
 

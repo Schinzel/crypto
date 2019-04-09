@@ -1,7 +1,6 @@
 package io.schinzel.crypto.cipher;
 
 import io.schinzel.basicutils.RandomUtil;
-import io.schinzel.crypto.cipher.NoCipher;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -12,15 +11,15 @@ public class NoCipherTest {
 
     @Test
     public void create_NoArgs_NoCipherInstance() {
-        assertThat(io.schinzel.crypto.cipher.NoCipher.create().getClass().getSimpleName())
-                .isEqualTo(io.schinzel.crypto.cipher.NoCipher.class.getSimpleName());
+        assertThat(NoCipher.create().getClass().getSimpleName())
+                .isEqualTo(NoCipher.class.getSimpleName());
     }
 
 
     @Test
     public void encrypt_RandomString_SameString() {
         String clearText = RandomUtil.getRandomString(20);
-        String encrypted = new io.schinzel.crypto.cipher.NoCipher().encrypt(clearText);
+        String encrypted = new NoCipher().encrypt(clearText);
         assertEquals(clearText, encrypted);
     }
 

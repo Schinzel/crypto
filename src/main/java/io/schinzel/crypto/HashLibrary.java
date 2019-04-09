@@ -19,7 +19,7 @@ public class HashLibrary {
     /** Singleton instance */
     static HashLibrary SINGLETON_INSTANCE = new HashLibrary();
     @Getter(AccessLevel.PRIVATE)
-    private Map<Integer, io.schinzel.crypto.hash.IHash> hashes = new HashMap<>();
+    private Map<Integer, IHash> hashes = new HashMap<>();
 
 
     /**

@@ -24,11 +24,12 @@ import java.util.Map;
  * <p>
  * Created by schinzel on 2017-04-30.
  */
+@SuppressWarnings("ALL")
 public class CipherLibrary {
     /** Singleton instance */
     private static CipherLibrary SINGLETON_INSTANCE = new CipherLibrary();
     @Getter(AccessLevel.PRIVATE)
-    private Map<Integer, io.schinzel.crypto.cipher.ICipher> ciphers = new HashMap<>();
+    private Map<Integer, ICipher> ciphers = new HashMap<>();
 
 
     /**
