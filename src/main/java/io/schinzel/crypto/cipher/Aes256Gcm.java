@@ -77,7 +77,7 @@ public class Aes256Gcm implements ICipher {
      * @param encoding The encoding to use to encode the encrypted strings.
      */
     @SneakyThrows
-    public Aes256Gcm(byte[] key, IEncoding encoding) {
+    public Aes256Gcm(final byte[] key, final IEncoding encoding) {
         //Throw if argument key empty
         Thrower.throwIfTrue(Checker.isEmpty(key)).message("The key cannot be empty");
         //Throw if key length is not 32
@@ -95,7 +95,7 @@ public class Aes256Gcm implements ICipher {
      * @param key The key to check and cast to byte array
      * @return The argument key as byte array
      */
-    static byte[] checkKeyAndGetBytes(String key) {
+    static byte[] checkKeyAndGetBytes(final String key) {
         Thrower.throwIfVarEmpty(key, "key");
         byte[] keyAsBytes = UTF8.getBytes(key);
         Thrower.throwIfTrue(keyAsBytes.length != 32)
@@ -109,7 +109,7 @@ public class Aes256Gcm implements ICipher {
      * @return The argument text encrypted.
      */
     @Override
-    public String encrypt(byte[] clearTextAsBytes) {
+    public String encrypt(final byte[] clearTextAsBytes) {
         //Create holder for init vector
         byte[] abInitVector = this.getSaltShaker().getSalt();
         //Encrypt
@@ -122,15 +122,15 @@ public class Aes256Gcm implements ICipher {
 
 
     @Override
-    public byte[] decryptToByteArray(String encryptedText) {
+    public byte[] decryptToByteArray(final String encryptedText) {
         //Extract the init vector.
         String sInitVector = SubString.create(encryptedText).endDelimiter("_").getString();
         //Get the init vector as byte array
         byte[] abInitVector = Encoding.HEX.decode(sInitVector);
         //Remove the init vector from the encrypted string
-        encryptedText = SubString.create(encryptedText).startDelimiter("_").getString();
+        String encryptedTextWithoutInitVector = SubString.create(encryptedText).startDelimiter("_").getString();
         //Decode the encrypted string
-        byte[] abEncryptedTextDecoded = this.getEncoding().decode(encryptedText);
+        byte[] abEncryptedTextDecoded = this.getEncoding().decode(encryptedTextWithoutInitVector);
         //Decrypt
         return Aes256Gcm.crypt(abEncryptedTextDecoded, Cipher.DECRYPT_MODE, this.getKey(), abInitVector);
     }
@@ -145,7 +145,7 @@ public class Aes256Gcm implements ICipher {
      * @param initVector       The initialization vector
      * @return The input either encrypted or decrypted
      */
-    static byte[] crypt(byte[] input, int encryptOrDecrypt, byte[] key, byte[] initVector) {
+    static byte[] crypt(final byte[] input, final int encryptOrDecrypt, final byte[] key, final byte[] initVector) {
         try {
             AlgorithmParameterSpec ivParameterSpec = new GCMParameterSpec(128, initVector);
             SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
