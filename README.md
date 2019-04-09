@@ -1,6 +1,7 @@
 # crypto
 The purpose of this library is to offer protection of data from prying eyes through encryption and hash functions
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cef573d41162466b8e9936ead1eb3872)](https://app.codacy.com/app/henrik-schinzel/crypto?utm_source=github.com&utm_medium=referral&utm_content=Schinzel/crypto&utm_campaign=Badge_Grade_Settings)
 [![Build Status](https://travis-ci.org/Schinzel/crypto.svg?branch=master)](https://travis-ci.org/Schinzel/crypto)
 
 #### Sample code
