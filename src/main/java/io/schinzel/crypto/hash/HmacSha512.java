@@ -9,7 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 
 /**
- * The purpose of this class is NOT TO PROTECT PASSWORDS. For this use BCrypt. The purpose of this
+ * The purpose of this class is not to protect passwords. For this use BCrypt. The purpose of this
  * class is to protect PII and still have the data be searchable. To achieve this there is no salt
  * used and thus the same string hashed twice will look the same.
  * <p>
