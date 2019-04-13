@@ -3,14 +3,14 @@ jdk:
   - oraclejdk8
 script:
   - mvn test jacoco:report
-  - mvn sonar:sonar \
-    -Dsonar.projectKey=Schinzel_crypto \
-    -Dsonar.organization=schinzel-github \
-    -Dsonar.host.url=https://sonarcloud.io \
-    -Dsonar.login=cf8fb6c7b1f536e948f7d2f075d21f226e743c61
 notifications:
   email: false
 before_install:
   - sudo apt-get install jq
 
 after_success:
+  mvn sonar:sonar \
+  -Dsonar.projectKey=Schinzel_crypto \
+  -Dsonar.organization=schinzel-github \
+  -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.login=fc923d133b5a58a6e6060ddf6166772767519653
