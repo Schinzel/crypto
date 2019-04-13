@@ -6,5 +6,3 @@ script:
   - mvn sonar:sonar -Dsonar.projectKey=Schinzel_crypto -Dsonar.organization=schinzel-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_LOGIN
 notifications:
   email: false
-before_install:
-  - sudo apt-get install jq
