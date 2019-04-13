@@ -2,7 +2,6 @@
 The purpose of this library is to offer protection of data from prying eyes through encryption and hash functions
 
 [![Build Status](https://travis-ci.org/Schinzel/crypto.svg?branch=master)](https://travis-ci.org/Schinzel/crypto)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d6beacdfd9524513bf817a243bccc137)](https://www.codacy.com/app/henrik-schinzel/crypto?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Schinzel/crypto&amp;utm_campaign=Badge_Grade)
 #### Sample code
 ```java
 Aes256Gcm("0123456789abcdef0123456789abcdef");
