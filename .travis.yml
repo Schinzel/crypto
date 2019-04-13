@@ -3,6 +3,8 @@ jdk:
   - oraclejdk8
 script:
   - mvn test jacoco:report
+  - echo $SONAR_LOGIN
+  - echo "bapp"
 notifications:
   email: false
 before_install:
@@ -13,4 +15,4 @@ after_success:
   -Dsonar.projectKey=Schinzel_crypto \
   -Dsonar.organization=schinzel-github \
   -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=fc923d133b5a58a6e6060ddf6166772767519653
+  -Dsonar.login=$SONAR_LOGIN
