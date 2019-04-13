@@ -1,7 +1,8 @@
 package io.schinzel.samples.crypto;
 
-import io.schinzel.basicutils.crypto.hash.Bcrypt;
-import io.schinzel.basicutils.crypto.hash.IHash;
+
+import io.schinzel.crypto.hash.Bcrypt;
+import io.schinzel.crypto.hash.IHash;
 
 public class BcryptSample {
     public static void main(String[] args) {

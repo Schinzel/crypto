@@ -22,6 +22,18 @@ public enum Encoding implements IEncoding {
             return BaseEncoding.base64().decode(str);
         }
     },
+    BASE62{
+        @Override
+        public String encode(byte[] b) {
+            return Base62.encode(b);
+        }
+
+
+        @Override
+        public byte[] decode(String str) {
+            return Base62.decode(str);
+        }
+    },
     /** Hex encoding aka Base16 */
     HEX {
         @Override

@@ -1,7 +1,8 @@
 package io.schinzel.samples.crypto;
 
-import io.schinzel.basicutils.crypto.cipher.Aes256Gcm;
-import io.schinzel.basicutils.crypto.CipherLibrary;
+
+import io.schinzel.crypto.CipherLibrary;
+import io.schinzel.crypto.cipher.Aes256Gcm;
 
 public class CipherLibrarySample {
 

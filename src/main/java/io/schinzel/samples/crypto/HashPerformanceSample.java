@@ -3,9 +3,9 @@ package io.schinzel.samples.crypto;
 import io.schinzel.basicutils.RandomUtil;
 import io.schinzel.basicutils.Sandman;
 import io.schinzel.basicutils.str.Str;
-import io.schinzel.basicutils.crypto.hash.Bcrypt;
-import io.schinzel.basicutils.crypto.hash.HmacSha512;
-import io.schinzel.basicutils.crypto.hash.IHash;
+import io.schinzel.crypto.hash.Bcrypt;
+import io.schinzel.crypto.hash.HmacSha512;
+import io.schinzel.crypto.hash.IHash;
 
 import java.util.ArrayList;
 import java.util.List;

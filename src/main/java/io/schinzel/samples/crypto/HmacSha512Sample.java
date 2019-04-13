@@ -1,7 +1,8 @@
 package io.schinzel.samples.crypto;
 
-import io.schinzel.basicutils.crypto.hash.HmacSha512;
-import io.schinzel.basicutils.crypto.hash.IHash;
+
+import io.schinzel.crypto.hash.HmacSha512;
+import io.schinzel.crypto.hash.IHash;
 
 public class HmacSha512Sample {
 

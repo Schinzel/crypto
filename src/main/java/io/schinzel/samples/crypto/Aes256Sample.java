@@ -1,8 +1,9 @@
 package io.schinzel.samples.crypto;
 
-import io.schinzel.basicutils.crypto.cipher.Aes256Gcm;
-import io.schinzel.basicutils.crypto.cipher.ICipher;
-import io.schinzel.basicutils.crypto.encoding.Encoding;
+
+import io.schinzel.crypto.cipher.Aes256Gcm;
+import io.schinzel.crypto.cipher.ICipher;
+import io.schinzel.crypto.encoding.Encoding;
 
 public class Aes256Sample {
 
@@ -27,7 +28,7 @@ public class Aes256Sample {
 
     private static void sampleEncryptAndDecrypt() {
         System.out.println("*** Example 2 ***");
-        ICipher aes = new Aes256Gcm("0123456789abcdef0123456789abcdef", Encoding.HEX);
+        ICipher aes = new Aes256Gcm("0123456789abcdef0123456789abcdef", Encoding.BASE62);
         String encrypted = aes.encrypt("This is a string");
         String decrypted = aes.decrypt(encrypted);
         System.out.println("Encrypted: " + encrypted);

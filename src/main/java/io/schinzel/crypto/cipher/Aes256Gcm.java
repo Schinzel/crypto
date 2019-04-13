@@ -116,8 +116,10 @@ public class Aes256Gcm implements ICipher {
         byte[] encryptedTextAsBytes = Aes256Gcm.crypt(clearTextAsBytes, Cipher.ENCRYPT_MODE, this.getKey(), abInitVector);
         //Encode the bytes to string
         String encryptedTextAsString = this.getEncoding().encode(encryptedTextAsBytes);
+        //Encode init vector
+        String encodedInitVector = Encoding.BASE62.encode(abInitVector);
         //Concat the hec encoded init vector and the encrypted string and return
-        return Encoding.HEX.encode(abInitVector) + "_" + encryptedTextAsString;
+        return encodedInitVector + "_" + encryptedTextAsString;
     }
 
 
@@ -126,7 +128,7 @@ public class Aes256Gcm implements ICipher {
         //Extract the init vector.
         String sInitVector = SubString.create(encryptedText).endDelimiter("_").getString();
         //Get the init vector as byte array
-        byte[] abInitVector = Encoding.HEX.decode(sInitVector);
+        byte[] abInitVector = Encoding.BASE62.decode(sInitVector);
         //Remove the init vector from the encrypted string
         String encryptedTextWithoutInitVector = SubString.create(encryptedText).startDelimiter("_").getString();
         //Decode the encrypted string
