@@ -8,6 +8,11 @@
     <artifactId>crypto</artifactId>
     <version>1.1</version>
 
+    <name>Crypto</name>
+    <description>
+        The purpose of this library is to offer protection of data from prying eyes through encryption and hash functions
+    </description>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-repo>maven-repo.schinzel.io</maven-repo>
