@@ -1,8 +1,10 @@
 package io.schinzel.crypto.encoding;
 
+import com.google.common.collect.ImmutableList;
 import io.schinzel.basicutils.FunnyChars;
 import io.schinzel.basicutils.RandomUtil;
 import io.schinzel.basicutils.UTF8;
+import io.schinzel.basicutils.file.ResourceReader;
 import io.schinzel.basicutils.str.Str;
 import org.junit.Test;
 
@@ -112,5 +114,24 @@ public class Base62Test {
         }
         long execTime = System.currentTimeMillis() - startTime;
         assertThat(execTime).isLessThan(400);
+    }
+
+
+    @Test
+    public void encodeDecode_MultipleFileFormats_DecodedFileIsSameAsSameAsInput() {
+        ImmutableList<String> extensionList = new ImmutableList.Builder<String>()
+                .add("doc")
+                .add("gif")
+                .add("jpg")
+                .add("pdf")
+                .add("jpg")
+                .add("jpg")
+                .build();
+        for (String fileExtension : extensionList) {
+            byte[] fileContent = ResourceReader.read("file." + fileExtension).getByteArray();
+            String encodedFileContent = Base62.encode(fileContent);
+            byte[] decodedFileContent = Base62.decode(encodedFileContent);
+            assertThat(fileContent).isEqualTo(decodedFileContent);
+        }
     }
 }
