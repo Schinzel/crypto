@@ -13,6 +13,12 @@ import java.util.Arrays;
  * 10 000 encodes and decodes of strings with a random length between 1 and 500 chars took
  * approximately 100 ms on a 2016 MacBook Pro 2,6 GHz Intel Core i7.
  * <p>
+ * It is about half as fast as Guavas Base16 and Base64 encoding
+ * 10 encodes and decodes of a 5mb png file took on  a 2016 MacBook Pro 2,6 GHz Intel Core i7.:
+ * Base62 took 1377 ms
+ * Base64 took 586 ms
+ * Base16 took 654 ms
+ * <p>
  * Changed access modifiers from the original code.
  * <p>
  * Original JavaDoc below this line
