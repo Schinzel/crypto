@@ -93,7 +93,7 @@ class Base62 {
         final BitInputStream in = new BitInputStream(data);
         while (in.hasMore()) {
             // Read not greater than 6 bits from the stream
-            final int rawBits = in.readBits(6);
+            final int rawBits = in.readBits();
 
             // For some cases special processing is needed, so _bits_ will contain final data representation needed to
             // form next output character
@@ -102,7 +102,7 @@ class Base62 {
                 // We can't represent all 6 bits of the data, so extract only least significant 5 bits and return for
                 // one bit back in the stream
                 bits = rawBits & MASK_5BITS;
-                in.seekBit(-1);
+                in.seekBit();
             } else {
                 // In most cases all 6 bits used to form output character
                 bits = rawBits;
@@ -169,18 +169,16 @@ class Base62 {
             this.buffer = bytes;
         }
 
-        void seekBit(int pos) {
+        void seekBit() {
+            int pos = -1;
             offset += pos;
             if (offset < 0 || offset > buffer.length * 8) {
                 throw new IndexOutOfBoundsException();
             }
         }
 
-        int readBits(int bitsCount) {
-            if (bitsCount < 0 || bitsCount > 7) {
-                throw new IndexOutOfBoundsException();
-            }
-
+        int readBits() {
+            int bitsCount = 6;
             final int bitNum = offset % 8;
             final int byteNum = offset / 8;
 
