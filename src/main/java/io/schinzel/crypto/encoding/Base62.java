@@ -34,6 +34,10 @@ import java.util.Arrays;
  * @author Pavel Myasnov
  */
 class Base62 {
+
+    private Base62() {
+    }
+
     /**
      * This array is a lookup table that translates 6-bit positive integer index values into their "Base62 Alphabet"
      * equivalents as specified in Table 1 of RFC 2045 excepting special characters for 62 and 63 values.
