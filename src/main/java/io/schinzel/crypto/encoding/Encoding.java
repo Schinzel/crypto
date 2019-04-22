@@ -4,6 +4,8 @@ package io.schinzel.crypto.encoding;
 import com.google.common.io.BaseEncoding;
 import lombok.SneakyThrows;
 
+import java.util.Base64;
+
 /**
  * Encodes data and decodes encoded string.
  * <p>
@@ -13,16 +15,16 @@ public enum Encoding implements IEncoding {
     BASE64 {
         @Override
         public String encode(byte[] b) {
-            return BaseEncoding.base64().encode(b);
+            return Base64.getEncoder().encodeToString(b);
         }
 
 
         @Override
         public byte[] decode(String str) {
-            return BaseEncoding.base64().decode(str);
+            return Base64.getDecoder().decode(str);
         }
     },
-    BASE62{
+    BASE62 {
         @Override
         public String encode(byte[] b) {
             return Base62.encode(b);
