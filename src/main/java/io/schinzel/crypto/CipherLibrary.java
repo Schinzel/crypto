@@ -27,7 +27,7 @@ import java.util.Map;
 @SuppressWarnings("ALL")
 public class CipherLibrary {
     /** Singleton instance */
-    private static CipherLibrary SINGLETON_INSTANCE = new CipherLibrary();
+    private static final CipherLibrary SINGLETON_INSTANCE = new CipherLibrary();
     @Getter(AccessLevel.PRIVATE)
     private Map<Integer, ICipher> ciphers = new HashMap<>();
 

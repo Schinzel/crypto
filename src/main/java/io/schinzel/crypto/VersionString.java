@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  */
 @SuppressWarnings("WeakerAccess")
 public class VersionString {
-    private static Pattern STRING_PATTERN = Pattern.compile("^v(\\d+)_.*$", Pattern.DOTALL);
+    private static final Pattern STRING_PATTERN = Pattern.compile("^v(\\d+)_.*$", Pattern.DOTALL);
     private static final String PREFIX_START = "v";
     private static final String PREFIX_END = "_";
 
