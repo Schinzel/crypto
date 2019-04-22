@@ -51,7 +51,7 @@ public class EncodingTest {
             }
         }
     }
-    
+
 
     @Test
     public void encode_Base64HardcodedValue_HardcodedOutput() {

@@ -22,6 +22,7 @@ import java.util.Arrays;
  * encode and decode in above test set up had been completed.
  * <p>
  * Changed access modifiers from the original code.
+ * Change input to two methods that always had the same input.
  * <p>
  * Original JavaDoc below this line
  * **********
