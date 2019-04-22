@@ -91,8 +91,5 @@ public class HashLibrary {
     }
 
 
-    void reset(){
-
-    }
 }
 
