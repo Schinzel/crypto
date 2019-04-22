@@ -186,7 +186,7 @@ class Base62 {
             final int firstRead = Math.min(8 - bitNum, bitsCount);
             final int secondRead = bitsCount - firstRead;
 
-            int result = (buffer[byteNum] & (((1 << firstRead) - 1) << bitNum)) >>> bitNum;
+            int result = ((buffer[byteNum] & 0xff) & (((1 << firstRead) - 1) << bitNum)) >>> bitNum;
             if (secondRead > 0 && byteNum + 1 < buffer.length) {
                 result |= (buffer[byteNum + 1] & ((1 << secondRead) - 1)) << firstRead;
             }
