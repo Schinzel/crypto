@@ -18,11 +18,10 @@ import java.util.Arrays;
  * Base62 took 1377 ms
  * Base64 took 586 ms
  * Base16 took 654 ms
- * The only repo I found github.com/seruco/base62 was very slow. After > 3 minutes not a single
+ * The only other Java repo I found github.com/seruco/base62 was very slow. After > 3 minutes not a single
  * encode and decode in above test set up had been completed.
  * <p>
- * Changed access modifiers from the original code.
- * Change input to two methods that always had the same input.
+ * Did some code clean up for SonarCloud and IntelliJ warnings.
  * <p>
  * Original JavaDoc below this line
  * **********
