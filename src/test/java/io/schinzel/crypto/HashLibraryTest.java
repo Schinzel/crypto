@@ -36,7 +36,7 @@ public class HashLibraryTest {
         String expected = "v1_hashed_string";
         assertThat(actual).isEqualTo(expected);
         //Reset singleton
-        HashLibrary.SINGLETON_INSTANCE.hashes.clear();
+        HashLibrary.getSingleton().getHashes().clear();
     }
 
 

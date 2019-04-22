@@ -17,8 +17,8 @@ import java.util.Map;
 @SuppressWarnings("WeakerAccess")
 public class HashLibrary {
     /** Singleton instance */
-    static final HashLibrary SINGLETON_INSTANCE = new HashLibrary();
-    @Getter(AccessLevel.PRIVATE)
+    private static final HashLibrary SINGLETON_INSTANCE = new HashLibrary();
+    @Getter(AccessLevel.PACKAGE)
     Map<Integer, IHash> hashes = new HashMap<>();
 
 
