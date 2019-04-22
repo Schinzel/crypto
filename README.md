@@ -10,7 +10,7 @@ The purpose of this library is to offer protection of data from prying eyes thro
 
 #### Sample code
 ```java
-Aes256Gcm("0123456789abcdef0123456789abcdef");
+Aes256Gcm aes = Aes256Gcm("0123456789abcdef0123456789abcdef");
 String encryptedString = aes.encrypt("This is a string");
 
 IHash hash = new Bcrypt();
