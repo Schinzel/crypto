@@ -117,21 +117,4 @@ public class Base62Test {
     }
 
 
-    @Test
-    public void encodeDecode_MultipleFileFormats_DecodedFileIsSameAsSameAsInput() {
-        ImmutableList<String> extensionList = new ImmutableList.Builder<String>()
-                .add("doc")
-                .add("gif")
-                .add("jpg")
-                .add("pdf")
-                .add("jpg")
-                .add("jpg")
-                .build();
-        for (String fileExtension : extensionList) {
-            byte[] fileContent = ResourceReader.read("file." + fileExtension).getByteArray();
-            String encodedFileContent = Base62.encode(fileContent);
-            byte[] decodedFileContent = Base62.decode(encodedFileContent);
-            assertThat(fileContent).isEqualTo(decodedFileContent);
-        }
-    }
 }
