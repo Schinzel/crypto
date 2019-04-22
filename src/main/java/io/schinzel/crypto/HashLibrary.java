@@ -19,7 +19,7 @@ public class HashLibrary {
     /** Singleton instance */
     static final HashLibrary SINGLETON_INSTANCE = new HashLibrary();
     @Getter(AccessLevel.PRIVATE)
-    private Map<Integer, IHash> hashes = new HashMap<>();
+    Map<Integer, IHash> hashes = new HashMap<>();
 
 
     /**
@@ -90,5 +90,9 @@ public class HashLibrary {
                 .matches(clearText, hashedString);
     }
 
+
+    void reset(){
+
+    }
 }
 

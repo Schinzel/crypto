@@ -36,7 +36,7 @@ public class HashLibraryTest {
         String expected = "v1_hashed_string";
         assertThat(actual).isEqualTo(expected);
         //Reset singleton
-        HashLibrary.SINGLETON_INSTANCE = new HashLibrary();
+        HashLibrary.SINGLETON_INSTANCE.hashes.clear();
     }
 
 
@@ -49,8 +49,8 @@ public class HashLibraryTest {
         HashLibrary library = HashLibrary.create()
                 .addHash(45, mockHash1)
                 .addHash(77, mockHash2);
-        assertEquals("v45_mock1_mystring", library.hash(45, "mystring"));
-        assertEquals("v77_mock2_mystring", library.hash(77, "mystring"));
+        assertEquals("v45_mock1_my_string", library.hash(45, "my_string"));
+        assertEquals("v77_mock2_my_string", library.hash(77, "my_string"));
     }
 
 
