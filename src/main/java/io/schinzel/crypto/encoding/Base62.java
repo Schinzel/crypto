@@ -13,13 +13,14 @@ import java.util.Arrays;
  * 10 000 encodes and decodes of strings with a random length between 1 and 500 chars took
  * approximately 100 ms on a 2016 MacBook Pro 2,6 GHz Intel Core i7.
  * <p>
- * It is about half as fast as Guava's Base16 and Base64 encoding
- * 10 encodes and decodes of a 5mb png file took on  a 2016 MacBook Pro 2,6 GHz Intel Core i7.:
- * Base62 took 1377 ms
- * Base64 took 586 ms
- * Base16 took 654 ms
- * The only other Java repo I found github.com/seruco/base62 was very slow. After > 3 minutes not a single
- * encode and decode in above test set up had been completed.
+ * It is about half as fast as Guava's Base16 and Base64 encoding on larger byte arrays.
+ * 10 encodes and decodes of a 5 mb png file took on a 2016 MacBook Pro 2,6 GHz Intel Core i7:
+ * - Base62 took 1377 ms
+ * - Base64 took 586 ms
+ * - Base16 took 654 ms
+ * <p>
+ * The only other base 62 Java repo I found github.com/seruco/base62 was very slow. After > 3 minutes not a single
+ * encode and decode of a 5 mb png file had been completed.
  * <p>
  * Did some code clean up for SonarCloud and IntelliJ warnings.
  * <p>
