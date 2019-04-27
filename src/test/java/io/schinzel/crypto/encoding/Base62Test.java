@@ -1,10 +1,8 @@
 package io.schinzel.crypto.encoding;
 
-import com.google.common.collect.ImmutableList;
 import io.schinzel.basicutils.FunnyChars;
 import io.schinzel.basicutils.RandomUtil;
 import io.schinzel.basicutils.UTF8;
-import io.schinzel.basicutils.file.ResourceReader;
 import io.schinzel.basicutils.str.Str;
 import org.junit.Test;
 
@@ -13,7 +11,7 @@ import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.*;
 
 
-public class Base62Test {
+public class Base62Test extends Base62 {
 
     @Test
     public void encodeDecode_FunnyChars_DecodedStringShouldBeSameAsInput() {
@@ -125,4 +123,11 @@ public class Base62Test {
         );
     }
 
+    @Test
+    public void decodedBitsForCharacter_NonAlphanumericChar_Exception() {
+        char character = 1;
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
+                Base62.decodedBitsForCharacter(character)
+        );
+    }
 }

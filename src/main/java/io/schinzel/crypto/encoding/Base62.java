@@ -35,7 +35,7 @@ import java.util.Arrays;
  */
 class Base62 {
 
-    private Base62() {
+    Base62() {
     }
 
     /**
