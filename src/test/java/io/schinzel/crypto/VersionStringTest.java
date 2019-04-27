@@ -5,7 +5,7 @@ import io.schinzel.basicutils.RandomUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class VersionStringTest {
+public class VersionStringTest extends VersionString {
 
     @Test
     public void extractVersion_VersionSetWithAddVersionPrefix_OutputShouldBeSameAsInput() {

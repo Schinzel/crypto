@@ -20,7 +20,7 @@ public class VersionString {
     private static final String PREFIX_START = "v";
     private static final String PREFIX_END = "_";
 
-    private VersionString() {
+    VersionString() {
     }
 
 
