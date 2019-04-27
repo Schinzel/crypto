@@ -82,6 +82,15 @@ public class Aes256GcmTest {
 
 
     @Test
+    public void constructor_KeyNot32Long_Exception() {
+        byte[] key = {1, 2, 3};
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> new Aes256Gcm(key, Encoding.HEX))
+                .withMessageStartingWith("Key length must be 32");
+    }
+
+
+    @Test
     public void constructorOneArg() {
         Aes256Gcm aes = new Aes256Gcm(mKey);
         String expected = "abc";
