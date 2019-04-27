@@ -171,8 +171,7 @@ class Base62 {
 
 
         void seekBit() {
-            int pos = -1;
-            offset += pos;
+            offset--;
             if (offset < 0 || offset > buffer.length * 8) {
                 throw new IndexOutOfBoundsException();
             }
