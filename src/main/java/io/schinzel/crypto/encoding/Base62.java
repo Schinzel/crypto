@@ -73,14 +73,9 @@ class Base62 {
             41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51
     };
 
-    /**
-     * Special mask for the data that should be written in compact 5-bits form
-     */
+    /** Special mask for the data that should be written in compact 5-bits form */
     private static final int COMPACT_MASK = 0x1E; // 00011110
-
-    /**
-     * Mask for extracting 5 bits of the data
-     */
+    /** Mask for extracting 5 bits of the data */
     private static final int MASK_5BITS = 0x1F; // 00011111
 
     /**
@@ -115,9 +110,9 @@ class Base62 {
             // Look up next character in the encoding table and append it to the output StringBuilder
             sb.append(ENCODE_TABLE[bits]);
         }
-
         return sb.toString();
     }
+
 
     /**
      * Decodes a Base62 String into byte array.
@@ -152,9 +147,9 @@ class Base62 {
 
             out.writeBits(bitsCount, bits);
         }
-
         return out.toArray();
     }
+
 
     private static int decodedBitsForCharacter(char character) {
         final int result;
@@ -164,14 +159,15 @@ class Base62 {
         return result;
     }
 
+
     private static class BitInputStream {
         private final byte[] buffer;
-
         private int offset = 0;
 
         BitInputStream(byte[] bytes) {
             this.buffer = bytes;
         }
+
 
         void seekBit() {
             int pos = -1;
@@ -180,6 +176,7 @@ class Base62 {
                 throw new IndexOutOfBoundsException();
             }
         }
+
 
         int readBits() {
             int bitsCount = 6;
@@ -193,25 +190,25 @@ class Base62 {
             if (secondRead > 0 && byteNum + 1 < buffer.length) {
                 result |= (buffer[byteNum + 1] & ((1 << secondRead) - 1)) << firstRead;
             }
-
             offset += bitsCount;
-
             return result;
         }
+
 
         boolean hasMore() {
             return offset < buffer.length * 8;
         }
     }
 
+
     private static class BitOutputStream {
         private final byte[] buffer;
-
         private int offset = 0;
 
         BitOutputStream(int capacity) {
             buffer = new byte[capacity / 8];
         }
+
 
         void writeBits(int bitsCount, int bits) {
             final int bitNum = offset % 8;
@@ -224,14 +221,15 @@ class Base62 {
             if (secondWrite > 0) {
                 buffer[byteNum + 1] |= (bits >>> firstWrite) & ((1 << secondWrite) - 1);
             }
-
             offset += bitsCount;
         }
+
 
         byte[] toArray() {
             final int newLength = offset / 8;
             return newLength == buffer.length ? buffer : Arrays.copyOf(buffer, newLength);
         }
+
 
         int getBitsCountUpToByte() {
             final int currentBit = offset % 8;
