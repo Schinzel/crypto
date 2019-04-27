@@ -152,7 +152,7 @@ class Base62 {
     }
 
 
-    private static int decodedBitsForCharacter(char character) {
+    static int decodedBitsForCharacter(char character) {
         final int result;
         if (character >= DECODE_TABLE.length || (result = DECODE_TABLE[character]) < 0) {
             throw new IllegalArgumentException("Wrong Base62 symbol found: " + character);

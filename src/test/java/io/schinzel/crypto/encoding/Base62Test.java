@@ -117,4 +117,12 @@ public class Base62Test {
     }
 
 
+    @Test
+    public void decodedBitsForCharacter_characterTooHigh_Exception() {
+        char character = 65000;
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
+                Base62.decodedBitsForCharacter(character)
+        );
+    }
+
 }
