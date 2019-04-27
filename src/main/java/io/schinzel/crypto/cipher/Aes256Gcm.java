@@ -156,7 +156,7 @@ public class Aes256Gcm implements ICipher {
             return cipher.doFinal(input);
         } catch (NoSuchProviderException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
                 | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
-            throw new RuntimeException("Problems encrypting or decrypting string. " + e.getMessage());
+            throw new Aes256GcmException("Problems encrypting or decrypting string. " + e.getMessage());
         }
     }
 

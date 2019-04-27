@@ -61,9 +61,9 @@ public class CipherLibrary {
      * @return This for chaining
      */
     public CipherLibrary addCipher(Integer version, ICipher cipher) {
-        if (this.getCiphers().containsKey(version)) {
-            throw new RuntimeException("Cannot add cipher to CipherLibrary. This as there already exists a cipher with version " + version);
-        }
+        boolean cipherVersionExists = this.getCiphers().containsKey(version);
+        Thrower.throwIfTrue(cipherVersionExists)
+                .message("Cannot add cipher to CipherLibrary. This as there already exists a cipher with version " + version);
         this.getCiphers().put(version, cipher);
         return this;
     }

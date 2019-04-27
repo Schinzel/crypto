@@ -50,9 +50,9 @@ public class HashLibrary {
      * @return This for chaining
      */
     public HashLibrary addHash(Integer version, IHash hash) {
-        if (this.getHashes().containsKey(version)) {
-            throw new RuntimeException("Cannot add hash to HashLibrary. This as there already exists a hash with version " + version);
-        }
+        boolean hashVersionExists = this.getHashes().containsKey(version);
+        Thrower.throwIfTrue(hashVersionExists)
+                .message("Cannot add hash to HashLibrary. This as there already exists a hash with version " + version);
         this.getHashes().put(version, hash);
         return this;
     }
