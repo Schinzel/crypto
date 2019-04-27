@@ -1,8 +1,6 @@
-package io.schinzel.crypto.encoding;
+package io.schinzel.crypto.encoding.base62;
 
 import io.schinzel.basicutils.thrower.Thrower;
-
-import java.util.Arrays;
 
 /**
  * Code is from here https://github.com/glowfall/base62
@@ -33,7 +31,7 @@ import java.util.Arrays;
  *
  * @author Pavel Myasnov
  */
-class Base62 {
+public class Base62 {
 
     Base62() {
     }
@@ -85,7 +83,7 @@ class Base62 {
      * @param data binary data to encode
      * @return String containing Base62 characters
      */
-    static String encode(byte[] data) {
+    public static String encode(byte[] data) {
         Thrower.throwIfNull(data).message("Cannot encode a null value");
         // Reserving capacity for the worst case when each output character represents compacted 5-bits data
         final StringBuilder sb = new StringBuilder(data.length * 8 / 5 + 1);
@@ -121,7 +119,7 @@ class Base62 {
      * @param base62String String containing Base62 data
      * @return Array containing decoded data.
      */
-    static byte[] decode(String base62String) {
+    public static byte[] decode(String base62String) {
         Thrower.throwIfNull(base62String).message("Cannot encode a null value");
         final int length = base62String.length();
 
@@ -161,79 +159,4 @@ class Base62 {
     }
 
 
-    private static class BitInputStream {
-        private final byte[] buffer;
-        private int offset = 0;
-
-        BitInputStream(byte[] bytes) {
-            this.buffer = bytes;
-        }
-
-
-        void seekBit() {
-            offset--;
-            if (offset < 0 || offset > buffer.length * 8) {
-                throw new IndexOutOfBoundsException();
-            }
-        }
-
-
-        int readBits() {
-            int bitsCount = 6;
-            final int bitNum = offset % 8;
-            final int byteNum = offset / 8;
-
-            final int firstRead = Math.min(8 - bitNum, bitsCount);
-            final int secondRead = bitsCount - firstRead;
-
-            int result = ((buffer[byteNum] & 0xff) & (((1 << firstRead) - 1) << bitNum)) >>> bitNum;
-            if (secondRead > 0 && byteNum + 1 < buffer.length) {
-                result |= (buffer[byteNum + 1] & ((1 << secondRead) - 1)) << firstRead;
-            }
-            offset += bitsCount;
-            return result;
-        }
-
-
-        boolean hasMore() {
-            return offset < buffer.length * 8;
-        }
-    }
-
-
-    private static class BitOutputStream {
-        private final byte[] buffer;
-        private int offset = 0;
-
-        BitOutputStream(int capacity) {
-            buffer = new byte[capacity / 8];
-        }
-
-
-        void writeBits(int bitsCount, int bits) {
-            final int bitNum = offset % 8;
-            final int byteNum = offset / 8;
-
-            final int firstWrite = Math.min(8 - bitNum, bitsCount);
-            final int secondWrite = bitsCount - firstWrite;
-
-            buffer[byteNum] |= (bits & ((1 << firstWrite) - 1)) << bitNum;
-            if (secondWrite > 0) {
-                buffer[byteNum + 1] |= (bits >>> firstWrite) & ((1 << secondWrite) - 1);
-            }
-            offset += bitsCount;
-        }
-
-
-        byte[] toArray() {
-            final int newLength = offset / 8;
-            return newLength == buffer.length ? buffer : Arrays.copyOf(buffer, newLength);
-        }
-
-
-        int getBitsCountUpToByte() {
-            final int currentBit = offset % 8;
-            return currentBit == 0 ? 0 : 8 - currentBit;
-        }
-    }
 }

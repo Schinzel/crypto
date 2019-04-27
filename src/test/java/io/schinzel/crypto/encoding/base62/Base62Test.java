@@ -1,4 +1,4 @@
-package io.schinzel.crypto.encoding;
+package io.schinzel.crypto.encoding.base62;
 
 import io.schinzel.basicutils.FunnyChars;
 import io.schinzel.basicutils.RandomUtil;

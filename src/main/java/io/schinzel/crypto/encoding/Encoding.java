@@ -2,6 +2,7 @@ package io.schinzel.crypto.encoding;
 
 
 import com.google.common.io.BaseEncoding;
+import io.schinzel.crypto.encoding.base62.Base62;
 import lombok.SneakyThrows;
 
 import java.util.Base64;
