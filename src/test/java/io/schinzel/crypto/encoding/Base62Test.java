@@ -6,12 +6,8 @@ import io.schinzel.basicutils.UTF8;
 import io.schinzel.basicutils.str.Str;
 import org.junit.Test;
 
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -123,6 +119,7 @@ public class Base62Test extends Base62 {
     @Test
     public void decodedBitsForCharacter_characterTooHigh_Exception() {
         char character = 65000;
+        //noinspection ResultOfMethodCallIgnored
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
                 Base62.decodedBitsForCharacter(character)
         );
@@ -131,6 +128,7 @@ public class Base62Test extends Base62 {
     @Test
     public void decodedBitsForCharacter_NonAlphanumericChar_Exception() {
         char character = 1;
+        //noinspection ResultOfMethodCallIgnored
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
                 Base62.decodedBitsForCharacter(character)
         );
@@ -138,7 +136,7 @@ public class Base62Test extends Base62 {
 
     @Test
     public void encodeDecode_AllAvailableChars_DecodedStringShouldBeSameAsInput() {
-        char charArray[] = new char[65536];
+        char[] charArray = new char[65536];
         for (int index = 0; index < charArray.length; index++) {
             charArray[index] = (char) index;
         }
