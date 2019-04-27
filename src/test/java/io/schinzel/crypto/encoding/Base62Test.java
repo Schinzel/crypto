@@ -6,7 +6,12 @@ import io.schinzel.basicutils.UTF8;
 import io.schinzel.basicutils.str.Str;
 import org.junit.Test;
 
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -129,5 +134,17 @@ public class Base62Test extends Base62 {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
                 Base62.decodedBitsForCharacter(character)
         );
+    }
+
+    @Test
+    public void encodeDecode_AllAvailableChars_DecodedStringShouldBeSameAsInput() {
+        char charArray[] = new char[65536];
+        for (int index = 0; index < charArray.length; index++) {
+            charArray[index] = (char) index;
+        }
+        byte[] bytesArray = new String(charArray).getBytes(StandardCharsets.UTF_8);
+        String encodedString = Base62.encode(bytesArray);
+        byte[] decodedByteArray = Base62.decode(encodedString);
+        assertThat(decodedByteArray).isEqualTo(bytesArray);
     }
 }
