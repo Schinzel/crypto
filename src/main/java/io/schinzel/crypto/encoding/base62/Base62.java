@@ -17,8 +17,8 @@ import io.schinzel.basicutils.thrower.Thrower;
  * - Base64 took 586 ms
  * - Base16 took 654 ms
  * <p>
- * The only other base 62 Java repo I found github.com/seruco/base62 was very slow. After > 3 minutes not a single
- * encode and decode of a 5 MB png file had been completed.
+ * The only other base 62 Java repo I found github.com/seruco/base62 was very slow. After more than
+ * 3 minutes not a single encode and decode of a 5 MB png file had been completed.
  * <p>
  * Did some code clean up for SonarCloud and IntelliJ warnings, broke out private classes
  * to have their own files and more mainly cosmetic changes.
