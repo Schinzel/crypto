@@ -3,11 +3,11 @@ package io.schinzel.crypto.encoding.base62;
 import java.util.Arrays;
 
 class BitOutputStream {
-    private final byte[] buffer;
+    private final byte[] mBuffer;
     private int mOffset = 0;
 
     BitOutputStream(int capacity) {
-        buffer = new byte[capacity / 8];
+        mBuffer = new byte[capacity / 8];
     }
 
 
@@ -18,9 +18,9 @@ class BitOutputStream {
         final int firstWrite = Math.min(8 - bitNum, bitsCount);
         final int secondWrite = bitsCount - firstWrite;
 
-        buffer[byteNum] |= (bits & ((1 << firstWrite) - 1)) << bitNum;
+        mBuffer[byteNum] |= (bits & ((1 << firstWrite) - 1)) << bitNum;
         if (secondWrite > 0) {
-            buffer[byteNum + 1] |= (bits >>> firstWrite) & ((1 << secondWrite) - 1);
+            mBuffer[byteNum + 1] |= (bits >>> firstWrite) & ((1 << secondWrite) - 1);
         }
         mOffset += bitsCount;
     }
@@ -28,7 +28,7 @@ class BitOutputStream {
 
     byte[] toArray() {
         final int newLength = mOffset / 8;
-        return newLength == buffer.length ? buffer : Arrays.copyOf(buffer, newLength);
+        return newLength == mBuffer.length ? mBuffer : Arrays.copyOf(mBuffer, newLength);
     }
 
 
