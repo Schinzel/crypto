@@ -3,10 +3,13 @@ The purpose of this library is to offer protection of data from prying eyes thro
 
 [![Build Status](https://travis-ci.org/Schinzel/crypto.svg?branch=master)](https://travis-ci.org/Schinzel/crypto)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Schinzel_crypto&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Schinzel_crypto)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Schinzel_crypto&metric=coverage)](https://sonarcloud.io/dashboard?id=Schinzel_crypto)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Schinzel_crypto&metric=security_rating)](https://sonarcloud.io/dashboard?id=Schinzel_crypto)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Schinzel_crypto&metric=coverage)](https://sonarcloud.io/dashboard?id=Schinzel_crypto)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Schinzel_crypto&metric=bugs)](https://sonarcloud.io/dashboard?id=Schinzel_crypto)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Schinzel_crypto&metric=code_smells)](https://sonarcloud.io/dashboard?id=Schinzel_crypto)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Schinzel_crypto&metric=sqale_index)](https://sonarcloud.io/dashboard?id=Schinzel_crypto)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Schinzel_crypto&metric=ncloc)](https://sonarcloud.io/dashboard?id=Schinzel_crypto)
+
 
 #### Sample code
 ```java
