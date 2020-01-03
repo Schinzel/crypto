@@ -6,7 +6,7 @@
 
     <groupId>io.schinzel</groupId>
     <artifactId>crypto</artifactId>
-    <version>1.2</version>
+    <version>1.2.1</version>
 
     <name>Crypto</name>
     <description>
@@ -37,6 +37,21 @@
     </repositories>
 
     <dependencies>
+        <!-- RUNTIME DEPENDENCIES -->
+        <dependency>
+            <!-- BCrypt cryptographic hash -->
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+        <dependency>
+            <!-- Basic utilities. Most commonly less verbose versions of
+            common code snippets -->
+            <groupId>io.schinzel</groupId>
+            <artifactId>basic-utils</artifactId>
+            <version>1.39</version>
+        </dependency>
+        <!-- DEV DEPENDENCIES -->
         <dependency>
             <!-- Annotations that generates getters, setters and more that
             are not visible in source code
@@ -45,13 +60,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.0</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <!-- Basic utilities. Most commonly less verbose versions of
-            common code snippets -->
-            <groupId>io.schinzel</groupId>
-            <artifactId>basic-utils</artifactId>
-            <version>1.38</version>
         </dependency>
         <!-- TEST DEPENDENCIES -->
         <dependency>
