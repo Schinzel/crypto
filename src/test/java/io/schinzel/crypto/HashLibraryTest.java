@@ -72,8 +72,9 @@ public class HashLibraryTest {
 
     @Test
     public void hash_NoHashesAdded_Exception() {
+        final HashLibrary hashLibrary = HashLibrary.create();
         assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
-                HashLibrary.create().hash(123, ""));
+                hashLibrary.hash(123, ""));
     }
 
 

@@ -71,9 +71,11 @@ public class CipherLibraryTest {
 
     @Test
     public void addCipher_CipherVersionAlreadyExists_ThrowsException() {
-        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> CipherLibrary.create()
-                .addCipher(1, mock(ICipher.class))
-                .addCipher(1, mock(ICipher.class)));
+        final ICipher mockCipher = mock(ICipher.class);
+        final CipherLibrary cipherLibrary = CipherLibrary.create()
+                .addCipher(1, mockCipher);
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> cipherLibrary
+                .addCipher(1, mockCipher));
     }
 
 
