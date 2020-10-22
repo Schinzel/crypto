@@ -10,8 +10,8 @@ import java.security.SecureRandom;
  * Created by Schinzel on 2017-05-12.
  */
 public class SaltShaker {
-    private Integer mSize;
-    private SecureRandom mRandom = new SecureRandom();
+    private final Integer mSize;
+    private final SecureRandom mRandom = new SecureRandom();
 
 
     /**

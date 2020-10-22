@@ -5,21 +5,18 @@ import io.schinzel.basicutils.RandomUtil;
 import io.schinzel.basicutils.UTF8;
 import io.schinzel.basicutils.str.Str;
 import io.schinzel.crypto.encoding.Encoding;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import javax.crypto.Cipher;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.assertj.core.api.Assertions.*;
 
 
 public class Aes256GcmTest {
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
-    private String mKey = RandomUtil.getRandomString(32);
+    private final String mKey = RandomUtil.getRandomString(32);
 
 
     @Test
@@ -54,30 +51,33 @@ public class Aes256GcmTest {
 
     @Test
     public void constructor_WrongKeySize_ThrowException() {
-        exception.expect(RuntimeException.class);
-        new Aes256Gcm("ThisIsTheKey");
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
+                new Aes256Gcm("ThisIsTheKey")
+        );
     }
 
 
     @Test
     public void constructor_ByteArrEmptyKey_ThrowException() {
-        exception.expect(RuntimeException.class);
-        new Aes256Gcm(new byte[]{}, Encoding.BASE64);
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
+                new Aes256Gcm(new byte[]{}, Encoding.BASE64)
+        );
     }
 
 
     @Test
     public void constructor_ByteArrNullKey_ThrowException() {
-        exception.expect(RuntimeException.class);
-        new Aes256Gcm((byte[]) null, Encoding.BASE64);
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(() ->
+                new Aes256Gcm((byte[]) null, Encoding.BASE64)
+        );
     }
 
 
     @Test
     public void constructor_NullKey_ThrowException() {
-        exception.expect(RuntimeException.class);
-        exception.expectMessage("Argument 'key' cannot be empty");
-        new Aes256Gcm(null);
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> new Aes256Gcm(null))
+                .withMessageStartingWith("Argument 'key' cannot be empty");
     }
 
 
@@ -129,9 +129,11 @@ public class Aes256GcmTest {
 
     @Test
     public void crypt_InvalidKeyLength_ThrowException() {
-        exception.expect(RuntimeException.class);
-        exception.expectMessage("Problems encrypting or decrypting string. Invalid AES key length");
-        Aes256Gcm.crypt(new byte[]{1, 2, 3}, Cipher.ENCRYPT_MODE, UTF8.getBytes("key"), UTF8.getBytes("InitVector123456"));
+        final byte[] keys = UTF8.getBytes("key");
+        final byte[] initVector = UTF8.getBytes("InitVector123456");
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> Aes256Gcm.crypt(new byte[]{1, 2, 3}, Cipher.ENCRYPT_MODE, keys, initVector))
+                .withMessageStartingWith("Problems encrypting or decrypting string. Invalid AES key length");
     }
 
 

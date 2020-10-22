@@ -10,7 +10,7 @@ public class BitOutputStreamTest {
     @Test
     public void getBitsCountUpToByte_Offset8_0() {
         int output = BitOutputStream.getBitsCountUpToByte(8);
-        assertThat(output).isEqualTo(0);
+        assertThat(output).isZero();
     }
 
     @Test
