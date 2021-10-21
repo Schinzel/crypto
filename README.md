@@ -1,7 +1,6 @@
 # crypto
 The purpose of this library is to offer protection of data from prying eyes through encryption and hash functions
 
-[![Build Status](https://travis-ci.org/Schinzel/crypto.svg?branch=master)](https://travis-ci.org/Schinzel/crypto)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Schinzel_crypto&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Schinzel_crypto)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Schinzel_crypto&metric=security_rating)](https://sonarcloud.io/dashboard?id=Schinzel_crypto)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Schinzel_crypto&metric=coverage)](https://sonarcloud.io/dashboard?id=Schinzel_crypto)
