@@ -6,7 +6,7 @@
 
     <groupId>io.schinzel</groupId>
     <artifactId>crypto</artifactId>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
 
     <name>Crypto</name>
     <description>
@@ -16,6 +16,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-repo>maven-repo.schinzel.io</maven-repo>
+        <!-- For Sonar Cloud integration -->
+        <sonar.organization>schinzel-github</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <distributionManagement>
@@ -31,8 +34,8 @@
 
     <repositories>
         <repository>
-            <id>${maven-repo}</id>
-            <url>http://${maven-repo}/release</url>
+            <id>maven-repo.schinzel.io</id>
+            <url>https://s3-eu-west-1.amazonaws.com/maven-repo.schinzel.io/release</url>
         </repository>
     </repositories>
 
@@ -49,7 +52,7 @@
             common code snippets -->
             <groupId>io.schinzel</groupId>
             <artifactId>basic-utils</artifactId>
-            <version>1.40</version>
+            <version>1.41</version>
         </dependency>
         <!-- DEV DEPENDENCIES -->
         <dependency>
@@ -58,27 +61,27 @@
             https://projectlombok.org/index.html -->
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
+            <version>1.18.22</version>
             <scope>provided</scope>
         </dependency>
         <!-- TEST DEPENDENCIES -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.5.15</version>
+            <version>4.0.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <!-- Fluid assertions http://joel-costigliola.github.io/assertj -->
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.17.2</version>
+            <version>3.21.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -91,13 +94,13 @@
                     <!-- Plug in for attaching sources to deploys -->
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>2.0.4</version>
+                    <version>3.2.1</version>
                 </plugin>
                 <plugin>
                     <!-- Plug in for java doc to deploys -->
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.3</version>
+                    <version>3.3.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -114,7 +117,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -133,7 +136,7 @@
                 To run locally: mvn test jacoco:report -->
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.9</version>
+                <version>0.8.7</version>
                 <configuration>
                     <excludes>
                         <exclude>io/schinzel/samples/**/*</exclude>
