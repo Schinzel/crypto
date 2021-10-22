@@ -39,13 +39,17 @@ String decryptedString = cipherLibrary.decrypt(encryptedString);
 	<dependency>
 		<groupId>io.schinzel</groupId>
 		<artifactId>crypto</artifactId>
-		<version>1.XX</version>
+		<version>1.X.X</version>
 	</dependency>
 </dependencies>    
 ```
 
 
 # Releases
+### 1.2.4
+_2021-10-22_
+- Upgraded dependencies
+
 ### 1.2.3
 _2021-10-21_
 - Upgraded dependencies
