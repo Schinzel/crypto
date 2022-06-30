@@ -46,6 +46,10 @@ String decryptedString = cipherLibrary.decrypt(encryptedString);
 
 
 # Releases
+### 1.2.5
+_2022-06-30_
+- Upgraded dependencies
+
 ### 1.2.4
 _2021-10-22_
 - Upgraded dependencies
